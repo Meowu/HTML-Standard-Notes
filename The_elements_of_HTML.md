@@ -36,9 +36,10 @@
 ##### The link element
 HTML 中 <link> 元素指定了外部资源与当前文档的关系。 这个元素的用途包括为导航定义一个关系框架。这个元素经常用来链接样式表（如CSS文件）。
 **attributes**
+使用 `link` 元素可以创建两种类型的链接：内部资源和超链接。创建了多少个链接取决于 `rel` 元素指定的关键字。
 * href — Address of the hyperlink p270
-* crossorigin — How the element handles crossorigin requests
-* rel — Relationship between the document containing the hyperlink p270 and the destination resource
+* crossorigin — How the element handles crossorigin requests 此枚举属性指定在加载相关图片时是否必须使用 CORS. 启用 `CORS` 的图片 可以在 `<canvas>` 元素中使用, 并避免其被污染。有 `anonymous` 和 `use-credential` 两种值。
+* rel — Relationship between the document containing the hyperlink and the destination resource
 * media — Applicable media
 * integrity — Integrity metadata used in Subresource Integrity checks [SRI]p1215
 * hreflang — Language of the linked resource
@@ -48,6 +49,8 @@ HTML 中 <link> 元素指定了外部资源与当前文档的关系。 这个元
     ```html
     <link rel="apple-touch-icon" sizes="120x120" href="/public/logo-120.png">
     ```
+
+`rel` 指定为 `stylesheet` 的时候默认类型是 `text/css` 。
 
 * as — Potential destination for a preload request (for rel="preload" and rel="modulepreload") 当 `rel` 属性指定这两个关键字时使用。例如当 `href` 是一个脚本时， `as="script"` 。它指定了<link>所加载的内容的类型，对于内容的优先级、请求匹配、正确的内容安全策略的选择以及正确的 Accept请求头的设置，这个属性是必需的。
 * color — Color to use when customizing a site's icon (仅当 rel="mask-icon" 时使用。)
@@ -85,6 +88,9 @@ would nonetheless be applied.
 
 
 ##### The meta element
+属于 `Metadata content` 类型，通常出现在 `head` 元素内。如果指定了 `itemprop` 属性，也可以是 `flow content` 或者 `phrasing content` ，此时就可以出现在对应的 `context` 下。没有结束标签。
+
+内容属性：`name` `http-equiv` `content` `charset` 以及其它全局属性。
 该元素表示了那些 `title` `base` `link` `style` `script` 元素无法表达的内容。
 > The meta element can represent document-level metadata with the **`name`** attribute, pragma directives with the **`http-equiv`** attribute, and the file's character encoding declaration when an HTML document is serialized to string form (e.g. for transmission over the network or for disk storage) with the **`charset`** attribute.
 
