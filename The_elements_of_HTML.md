@@ -28,6 +28,10 @@
 ##### The base element
 放在 `head` 元素内部，只有同时存在一个，没有结束标签。且必须放在所有包含 `url` 的元素前。
 仅作为全局相对路径 `URL` 的 `base URL` 。
+```html
+<base href="http://www.example.com/">
+<base target="_blank" href="http://www.example.com/">
+```
 
 ##### The link element
 HTML 中 <link> 元素指定了外部资源与当前文档的关系。 这个元素的用途包括为导航定义一个关系框架。这个元素经常用来链接样式表（如CSS文件）。
@@ -78,5 +82,43 @@ If one of the two files was returned without a Content-Typep87 metadata, or with
 "null", then the default type for stylesheetp290 links would kick in. Since that default type is text/cssp1206, the style sheet
 would nonetheless be applied.
 ```
+
+
+##### The meta element
+该元素表示了那些 `title` `base` `link` `style` `script` 元素无法表达的内容。
+> The meta element can represent document-level metadata with the **`name`** attribute, pragma directives with the **`http-equiv`** attribute, and the file's character encoding declaration when an HTML document is serialized to string form (e.g. for transmission over the network or for disk storage) with the **`charset`** attribute.
+
+内容属性：
+* 全局属性
+* name
+* http-equiv
+* content
+* charset
+
+* `name` `http-equiv` `itemprop` `charset` 属性必须指定且只能指定一个。当指定了 `name` `http-equiv` `itemprop` 时， `content` 属性也必须被指定，否则会被忽略。每个文档只能有一个包含 `charset` 属性的 `meta` 元素。
+
+###### Standard metadata names
+一些 `meta` 元素 `name` 属性能够指定的合法值。
+1. application-name 如果当前页是一个 Web 应用，则指定该属性。
+2. author
+3. description 页面描述。每页最多一个包含该属性的 `meta` 元素。
+4. generator 指定文档是由哪种软件生成的。 `<meta name=generator content="Frontweaver 8.2">` 。
+5. keywords 页面关键字，由逗号分隔开。许多搜索引擎并不考虑这些关键字，因为可能会被用来误导搜索引擎从而导致不准确的结果。
+6. referrer 指定 `referrer policy` 。
+7. theme-color 指定一个建议的颜色用来给浏览器显示页面。最多只有一个包含该属性的 `meta` 元素。`<meta name="theme-color" content="#3c790a">`
+8. 其它。任何人都可以定义自己的 metadata names 集合。不需要注册这些扩展。但是要注意不能跟已有的重复。
+
+###### Pragma directives
+当 `meta` 元素指定了 `http-equiv` 属性，该元素成为一个编译指示指令。
+下表定义了该属性的关键字：
+| State | Keyword | Notes |
+| ----- | ------- | ----- |
+| Content Language | content-language | Non-conforming |
+| Encoding declaration | content-type |                |
+| Default style | default-style |                      |
+| Refresh       | refresh |             |
+| Set-Cookie | set-cookie | Non-conforming |
+| X-UA-Compatible | x-ua-compatible | |
+| Content security policy | content-security-policy | |
 
 
